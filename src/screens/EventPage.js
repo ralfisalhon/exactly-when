@@ -22,10 +22,11 @@ class EventPage extends Component {
   };
 
   render() {
-    // const { type, placeholder } = this.props;
+    const { id } = this.props;
     return (
       <div>
         <Logo />
+        <p>{id}</p>
       </div>
     );
   }

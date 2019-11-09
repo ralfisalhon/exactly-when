@@ -26,10 +26,18 @@ class LandingPage extends Component {
     return (
       <div>
         <Logo />
-        <Input type={"text"} placeholder={"Name of event"} />
-        <Input type={"number"} placeholder={"How long (mins)?"} />
-        <Button text={"Create Event"} onClick={this.createEvent} />
-        <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
+        <div>
+          <Input type={"text"} placeholder={"Name of event"} />
+        </div>
+        <div>
+          <Input type={"number"} placeholder={"How long (mins)?"} />
+        </div>
+        <div>
+          <Button text={"Create Event"} onClick={this.createEvent} />
+        </div>
+        <div>
+          <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
+        </div>
         <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
       </div>
     );

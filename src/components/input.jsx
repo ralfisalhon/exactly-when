@@ -20,7 +20,8 @@ const styles = {
     paddingLeft: "0px",
     borderBottomWidth: 1,
     borderColor: "black",
-    width: windowWidth * 0.6
+    width: windowWidth * 0.4,
+    minWidth: "250px"
   }
 };
 

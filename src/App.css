@@ -2,7 +2,6 @@
   text-align: center;
   background-color: #ecf0f1;
   height: 100vh;
-  width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +11,7 @@
 
 .logo {
   height: 75vmin;
+  max-height: 400px;
   max-width: 750px;
   overflow: hidden;
   width: 1;
