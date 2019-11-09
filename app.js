@@ -35,6 +35,7 @@ app.post('/createevent', (req, res) => {
     let event_id = crypto.randomBytes(16).toString('hex');
     db.collection('ids', (error, collection) => {
         if (error) {
+            console.log("collectionerror: " + error);
             res.sendStatus(500);
             return;
         }
