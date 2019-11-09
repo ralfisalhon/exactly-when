@@ -39,19 +39,17 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button style={styles.buttonStyle} onClick={() => alert("create event")}>
-          <p style={styles.eventText}>Create Event</p>
-        </button>
-        <button style={styles.buttonStyle} onClick={() => alert("exactly-what?")}>
-          <p style={styles.eventText}>exactly-what?</p>
-        </button>
-        <div style={styles.textContainer}>
-          <p style={styles.textTitle}>Picking a meeting time was never easier.</p>
-        </div>
-        <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
-      </header>
+      <img src={logo} className="logo" alt="logo" />
+      <button style={styles.buttonStyle} onClick={() => alert("create event")}>
+        <p style={styles.eventText}>Create Event</p>
+      </button>
+      <button style={styles.buttonStyle} onClick={() => alert("exactly-what?")}>
+        <p style={styles.eventText}>exactly-what?</p>
+      </button>
+      <div style={styles.textContainer}>
+        <p style={styles.textTitle}>Picking a meeting time was never easier.</p>
+      </div>
+      <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
     </div>
   );
 }
