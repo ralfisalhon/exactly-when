@@ -33,19 +33,15 @@ app.get('/', (req, res) => {
 
 app.post('/createevent', (req, res) => {
     let event_id = crypto.randomBytes(16).toString('hex');
-    db.collection('ids', (error, collection) => {
+    
+    db.collection('ids', function(error, coll) {
         if (error) {
-            console.log("collectionerror: " + error);
+            console.log(error);
             res.sendStatus(500);
             return;
         }
         
-        let arr = collection.find().toArray();
-        while (arr.indexOf(event_id) === -1) {
-            event_id = crypto.randomBytes(16).toString('hex');
-        }
-        collection.insert({id: event_id});
-
+        coll.insert({id: event_id});
         res.status(200);
         res.send({id: event_id});
     });
