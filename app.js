@@ -11,6 +11,13 @@ var mongoUri = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPASS +
 var mongo  = require('mongodb').MongoClient;
 var format = require('util').format;
 var db = mongo.connect(mongoUri, function(error, dbconnection) {
+    if (error) {
+        console.log("Error establishing MongoDB connection.");
+        return;
+    } else {
+        console.log("MongoDB connection established.");
+    }
+    
     db = dbconnection;
 });
 
