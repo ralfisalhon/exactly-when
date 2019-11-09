@@ -1,0 +1,9 @@
+{
+    "name": "exactly-when",
+    "version": "0.0.1",
+    "dependencies": {
+        "body-parser": "latest",
+        "express": "latest",
+        "mongodb": "^2.2.33"
+    }
+}
