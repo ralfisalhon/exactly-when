@@ -1,57 +1,51 @@
-import React from "react";
-import logo from "./logo2.svg";
+import React, { Component } from "react";
 import "./App.css";
+import Logo from "./components/logo.jsx";
+import Input from "./components/input.jsx";
+import button from "./components/button.jsx";
+import Button from "./components/button.jsx";
 
-function App() {
-  const windowWidth = window.innerWidth;
+const mainColor = "#3fada8";
+const windowWidth =
+  window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
 
-  let styles = {
-    buttonStyle: {
-      backgroundColor: "#85ccdc",
-      borderRadius: "20px",
-      width: windowWidth * 0.85,
-      marginTop: "20px"
-    },
-    eventText: {
-      color: "white",
-      fontSize: 24,
-      margin: "15px",
-      fontWeight: "600",
-      fontFamily: "Futura"
-    },
-    textTitle: {
-      color: "#202020",
-      fontSize: 18,
-      fontFamily: "Futura"
-    },
-    textContainer: {
-      width: windowWidth * 0.7,
-      marginTop: "8px"
-    },
-    credits: {
-      fontSize: 12,
-      position: "absolute",
-      bottom: 10,
-      left: 0,
-      right: 0
-    }
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  createEvent = () => {
+    alert("Create Event");
   };
 
-  return (
-    <div className="App">
-      <img src={logo} className="logo" alt="logo" />
-      <button style={styles.buttonStyle} onClick={() => alert("create event")}>
-        <p style={styles.eventText}>Create Event</p>
-      </button>
-      <button style={styles.buttonStyle} onClick={() => alert("exactly-what?")}>
-        <p style={styles.eventText}>exactly-what?</p>
-      </button>
-      <div style={styles.textContainer}>
-        <p style={styles.textTitle}>Picking a meeting time was never easier.</p>
+  getInfo = () => {
+    alert("Get Info");
+  };
+
+  render() {
+    // const { type, placeholder } = this.props;
+    return (
+      <div className="App">
+        <Logo />
+        <Input type={"text"} placeholder={"Name of event"} />
+        <Input type={"number"} placeholder={"How long (mins)?"} />
+        <Button text={"Create Event"} onClick={this.createEvent} />
+        <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
+        <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
       </div>
-      <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
-    </div>
-  );
+    );
+  }
 }
+
+const styles = {
+  credits: {
+    fontSize: 12,
+    position: "absolute",
+    bottom: 10,
+    left: 0,
+    right: 0
+  }
+};
 
 export default App;

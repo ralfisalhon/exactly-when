@@ -1,15 +1,20 @@
 .App {
   text-align: center;
   background-color: #ecf0f1;
-  min-height: 100vh;
+  height: 100vh;
+  width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .logo {
   height: 75vmin;
+  max-width: 750px;
+  overflow: hidden;
+  width: 1;
 }
 
 * {
