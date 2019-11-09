@@ -24,5 +24,24 @@ app.get('/', (req, res) => {
     res.send("Hello!");
 });
 
+app.post('/createevent', (req, res) => {
+    let event_id = crypto.randomBytes(16).toString('hex');
+    db.collection('ids', (error, collection) => {
+        if (error) {
+            res.sendStatus(500);
+            return;
+        }
+        
+        let arr = collection.find().toArray();
+        while (arr.indexOf(event_id) === -1) {
+            event_id = crypto.randomBytes(16).toString('hex');
+        }
+        collection.insert({id: event_id});
+
+        res.status(200);
+        res.send({id: event_id});
+    });
+});
+
 /* Listen in on a port. */
 app.listen(process.env.PORT || 3000);
