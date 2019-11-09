@@ -26,7 +26,7 @@ function App() {
     },
     textContainer: {
       width: windowWidth * 0.7,
-      marginTop: "-10px"
+      marginTop: "8px"
     },
     credits: {
       fontSize: 12,
