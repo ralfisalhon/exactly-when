@@ -1,40 +1,26 @@
 import React, { Component } from "react";
 import "./App.css";
-import Logo from "./components/logo.jsx";
-import Input from "./components/input.jsx";
-import button from "./components/button.jsx";
-import Button from "./components/button.jsx";
+import LandingPage from "./screens/LandingPage";
+import EventPage from "./screens/EventPage";
 
 const mainColor = "#3fada8";
 const windowWidth =
   window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  constructor() {
+    super();
+    this.state = {
+      currPage: "Event",
+      pages: {
+        Landing: <LandingPage />,
+        Event: <EventPage />
+      }
+    };
   }
-
-  createEvent = () => {
-    alert("Create Event");
-  };
-
-  getInfo = () => {
-    alert("Get Info");
-  };
-
   render() {
-    // const { type, placeholder } = this.props;
-    return (
-      <div className="App">
-        <Logo />
-        <Input type={"text"} placeholder={"Name of event"} />
-        <Input type={"number"} placeholder={"How long (mins)?"} />
-        <Button text={"Create Event"} onClick={this.createEvent} />
-        <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
-        <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
-      </div>
-    );
+    const { currPage, pages } = this.state;
+    return <div className="App">{pages[currPage] || <p>Page doesn't exist</p>}</div>;
   }
 }
 
