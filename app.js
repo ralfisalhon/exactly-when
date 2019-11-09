@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/createevent', (req, res) => {
-    let event_id = crypto.randomBytes(16).toString('hex');
+    let event_id = crypto.randomBytes(8).toString('hex');
     
     db.collection('ids', function(error, coll) {
         if (error) {
