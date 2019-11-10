@@ -17,20 +17,21 @@ class TextInput extends Component {
     };
   }
 
-  changeValue(event) {
+  changeValue = (event, onKeyPress) => {
     const value = event.target.value;
     this.setState({ value, error: "" });
-  }
+    onKeyPress(value);
+  };
 
-  handleKeyPress(event) {
-    if (event.which === 13) {
-      this.setState({ value: this.props.predicted });
-    }
-  }
+  // handleKeyPress(event) {
+  //   if (event.which === 13) {
+  //     this.setState({ value: this.props.predicted });
+  //   }
+  // }
 
   render() {
     const { active, value, error, label, type } = this.state;
-    const { locked } = this.props;
+    const { locked, onKeyPress } = this.props;
     const fieldClassName = `field ${(locked ? active : active || value) && "active"} ${locked &&
       !active &&
       "locked"}`;
@@ -42,8 +43,8 @@ class TextInput extends Component {
           type={type}
           value={value}
           placeholder={active ? "" : label}
-          onChange={this.changeValue.bind(this)}
-          onKeyPress={this.handleKeyPress.bind(this)}
+          onChange={event => this.changeValue(event, onKeyPress)}
+          onKeyPress={onKeyPress}
           onFocus={() => !locked && this.setState({ active: true })}
           onBlur={() => !locked && this.setState({ active: false })}
         />
