@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1037.939px" height="924px" viewBox="0 64.133 1037.939 924" enable-background="new 0 64.133 1037.939 924"
+	 xml:space="preserve">
+<g id="Logo">
+	<title>time management</title>
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-402.0601" y1="915.1201" x2="-402.0601" y2="191.1206" gradientTransform="matrix(1 0 0 1 924 -18.71)">
+		<stop  offset="0" style="stop-color:#808080;stop-opacity:0.25"/>
+		<stop  offset="0.54" style="stop-color:#808080;stop-opacity:0.12"/>
+		<stop  offset="1" style="stop-color:#808080;stop-opacity:0.1"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_1_)" cx="521.94" cy="534.41" r="362"/>
+	<circle fill="#38ADA9" cx="521.94" cy="534.41" r="356"/>
+	<circle fill="#DDE1EC" cx="521.94" cy="534.41" r="283"/>
+	<rect x="513.94" y="301.41" opacity="0.3" fill="#535461" enable-background="new    " width="16" height="250"/>
+	<g opacity="0.1">
+		<rect x="538.94" y="528.411" width="225.999" height="20"/>
+		<rect x="435.842" y="419.445" transform="matrix(0.4639 -0.8859 0.8859 0.4639 -203.662 662.8775)" width="20" height="160.521"/>
+		<circle cx="521.94" cy="538.411" r="30"/>
+	</g>
+	<rect x="538.94" y="524.411" fill="#535461" width="225.999" height="20"/>
+	
+		<rect x="365.63" y="485.696" transform="matrix(0.8859 0.4639 -0.4639 0.8859 280.8328 -150.2832)" fill="#535461" width="160.522" height="20"/>
+	<circle fill="#535461" cx="521.94" cy="534.411" r="30"/>
+	<g opacity="0.1">
+		<path d="M260.92,568.411c0-156.301,126.7-283,283-283c88.945-0.079,172.735,41.728,226.16,112.84
+			c-48.16-87.521-141.16-146.84-248.16-146.84c-156.3,0-283,126.7-283,283c-0.092,61.399,19.878,121.151,56.87,170.16
+			C272.849,662.858,260.853,616.014,260.92,568.411z"/>
+	</g>
+	<text transform="matrix(1 0 0 1 82.814 732.3105)" fill="#0C2461" font-family="'Futura-Medium'" font-size="150">exactly-when</text>
+</g>
+</svg>

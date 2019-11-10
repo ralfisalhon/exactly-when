@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../components/logo.jsx";
 import Input from "../components/input.jsx";
+import TextInput from "../components/textinput.jsx";
 import Button from "../components/button.jsx";
 
 const mainColor = "#3fada8";
@@ -26,11 +27,11 @@ class LandingPage extends Component {
     return (
       <div>
         <Logo />
-        <div>
-          <Input type={"text"} placeholder={"Name of event"} />
+        <div style={styles.padding}>
+          <TextInput id={1} label="Name of event" locked={false} active={false} />
         </div>
-        <div>
-          <Input type={"number"} placeholder={"How long (mins)?"} />
+        <div style={styles.padding}>
+          <TextInput id={1} label="How long (mins)?" locked={false} active={false} />
         </div>
         <div>
           <Button text={"Create Event"} onClick={this.createEvent} />
@@ -51,6 +52,9 @@ const styles = {
     bottom: 10,
     left: 0,
     right: 0
+  },
+  padding: {
+    marginTop: 10
   }
 };
 
