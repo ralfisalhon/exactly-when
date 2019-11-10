@@ -16,15 +16,21 @@ class LandingPage extends Component {
     super(props);
     this.state = {
       loading: false,
-      eventName: "",
+      eventName: "Untitled Meeting",
       eventTime: 0
     };
   }
 
-  createEvent = () => {
+  createEvent = onNavigate => {
+    if (this.state.eventName.length == 0) {
+      this.setState({ eventName: "Untitled Meeting" });
+    }
+
+    // Simulates a fetch to the heroku app.
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
+      onNavigate("Event");
     }, 3000);
   };
 
@@ -42,6 +48,7 @@ class LandingPage extends Component {
 
   render() {
     const { loading, eventName, eventTime } = this.state;
+    const { onNavigate } = this.props;
     return (
       <div>
         <Logo />
@@ -64,7 +71,7 @@ class LandingPage extends Component {
           />
         </div>
         <div>
-          <Button text={"Create Event"} onClick={this.createEvent} />
+          <Button text={"Create Event"} onClick={() => this.createEvent(onNavigate)} />
         </div>
 
         <Popup
@@ -85,14 +92,15 @@ class LandingPage extends Component {
             <Modal />
           </div>
         </Popup>
-        <div style={{ marginBottom: "50px" }} />
         {loading && (
-          <div>
-            <p>LOADING...</p>
+          <div style={{ marginTop: "10px" }}>
+            <p>Creating your event...</p>
             <p>Event name is: {eventName}</p>
             <p>Time in mins is: {eventTime}</p>
           </div>
         )}
+        <div style={{ marginBottom: "50px" }} />
+
         <p style={styles.credits}>
           Made by <a href="https://ralfisalhon.github.io/">@ralfisalhon</a> &{" "}
           <a href="https://github.com/mohsr">@mohsr</a>

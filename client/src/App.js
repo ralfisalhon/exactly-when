@@ -28,12 +28,21 @@ class App extends Component {
     }
   }
 
+  navigate(newPage) {
+    if (!this.state.id) this.setState({ id: 12345 });
+    this.setState({ currPage: newPage });
+  }
+
   render() {
     const { currPage, id } = this.state;
     return (
       <div className="App">
         <div style={{ maxWidth: "800px" }}>
-          {currPage == "Landing" ? <LandingPage /> : <EventPage id={id} />}
+          {currPage == "Landing" ? (
+            <LandingPage onNavigate={newPage => this.navigate(newPage)} />
+          ) : (
+            <EventPage id={id} />
+          )}
         </div>
       </div>
     );

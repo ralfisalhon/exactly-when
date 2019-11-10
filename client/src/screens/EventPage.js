@@ -26,7 +26,7 @@ class EventPage extends Component {
     return (
       <div>
         <Logo />
-        <p>{id}</p>
+        <p>Room id is: {id}</p>
       </div>
     );
   }
