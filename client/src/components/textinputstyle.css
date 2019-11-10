@@ -60,19 +60,6 @@ body {
   -webkit-appearance: none;
 }
 
-.field input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-.field input::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-.field input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-.field input:-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-
 .field input + label {
   position: absolute;
   top: 24px;
@@ -85,21 +72,4 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: 0.1s all ease-in-out;
-}
-
-::-webkit-input-placeholder {
-  color: peachpuff;
-  font-size: 13px;
-}
-::-moz-placeholder {
-  color: peachpuff;
-  font-size: 13px;
-}
-:-ms-input-placeholder {
-  color: peachpuff;
-  font-size: 13px;
-}
-::placeholder {
-  color: peachpuff;
-  font-size: 13px;
 }

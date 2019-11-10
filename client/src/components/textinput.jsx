@@ -29,7 +29,7 @@ class TextInput extends Component {
   }
 
   render() {
-    const { active, value, error, label } = this.state;
+    const { active, value, error, label, type } = this.state;
     const { locked } = this.props;
     const fieldClassName = `field ${(locked ? active : active || value) && "active"} ${locked &&
       !active &&
@@ -39,10 +39,9 @@ class TextInput extends Component {
       <div className={fieldClassName}>
         <input
           id={1}
-          //   style={{ color: "red" }}
-          type="text"
+          type={type}
           value={value}
-          placeholder={label}
+          placeholder={active ? "" : label}
           onChange={this.changeValue.bind(this)}
           onKeyPress={this.handleKeyPress.bind(this)}
           onFocus={() => !locked && this.setState({ active: true })}

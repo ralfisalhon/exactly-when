@@ -28,10 +28,10 @@ class LandingPage extends Component {
       <div>
         <Logo />
         <div style={styles.padding}>
-          <TextInput id={1} label="Name of event" locked={false} active={false} />
+          <TextInput type={"text"} label="Name of event" locked={false} active={false} />
         </div>
         <div style={styles.padding}>
-          <TextInput id={1} label="How long (mins)?" locked={false} active={false} />
+          <TextInput type={"number"} label="How long (mins)?" locked={false} active={false} />
         </div>
         <div>
           <Button text={"Create Event"} onClick={this.createEvent} />
@@ -39,7 +39,10 @@ class LandingPage extends Component {
         <div>
           <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
         </div>
-        <p style={styles.credits}>Made by @ralfisalhon & @mohsinrizvi</p>
+        <p style={styles.credits}>
+          Made by <a href="https://ralfisalhon.github.io/">@ralfisalhon</a> &{" "}
+          <a href="https://github.com/mohsr">@mohsr</a>
+        </p>
       </div>
     );
   }
