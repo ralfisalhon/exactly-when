@@ -38,15 +38,17 @@ class LandingPage extends Component {
         <div>
           <Button text={"Create Event"} onClick={this.createEvent} />
         </div>
-        <div style={{ marginBottom: "50px" }}>
-          <Popup
-            trigger={<Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />}
-            modal
-            closeOnDocumentClick
-          >
+
+        <Popup
+          trigger={<Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />}
+          modal
+          closeOnDocumentClick
+        >
+          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
             <Modal />
-          </Popup>
-        </div>
+          </div>
+        </Popup>
+        <div style={{ marginBottom: "50px" }} />
         <p style={styles.credits}>
           Made by <a href="https://ralfisalhon.github.io/">@ralfisalhon</a> &{" "}
           <a href="https://github.com/mohsr">@mohsr</a>
