@@ -3,6 +3,8 @@ import Logo from "../components/logo.jsx";
 import Input from "../components/input.jsx";
 import TextInput from "../components/textinput.jsx";
 import Button from "../components/button.jsx";
+import Modal from "../components/modal.jsx";
+import Popup from "reactjs-popup";
 
 const mainColor = "#3fada8";
 const windowWidth =
@@ -36,8 +38,14 @@ class LandingPage extends Component {
         <div>
           <Button text={"Create Event"} onClick={this.createEvent} />
         </div>
-        <div>
-          <Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />
+        <div style={{ marginBottom: "50px" }}>
+          <Popup
+            trigger={<Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />}
+            modal
+            closeOnDocumentClick
+          >
+            <Modal />
+          </Popup>
         </div>
         <p style={styles.credits}>
           Made by <a href="https://ralfisalhon.github.io/">@ralfisalhon</a> &{" "}
