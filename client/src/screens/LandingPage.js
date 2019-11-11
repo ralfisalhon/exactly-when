@@ -4,12 +4,15 @@ import Input from "../components/input.jsx";
 import TextInput from "../components/textinput.jsx";
 import Button from "../components/button.jsx";
 import Modal from "../components/modal.jsx";
+import Credits from "../components/credits.jsx";
+
 import Popup from "reactjs-popup";
 import { KeyObject } from "crypto";
 
 const mainColor = "#3fada8";
 const windowWidth =
   window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
+const windowHeight = window.innerHeight;
 
 class LandingPage extends Component {
   constructor(props) {
@@ -31,7 +34,7 @@ class LandingPage extends Component {
     setTimeout(() => {
       this.setState({ loading: false });
       onNavigate("Event");
-    }, 3000);
+    }, 500);
   };
 
   getInfo = () => {
@@ -101,23 +104,13 @@ class LandingPage extends Component {
         )}
         <div style={{ marginBottom: "50px" }} />
 
-        <p style={styles.credits}>
-          Made by <a href="https://ralfisalhon.github.io/">@ralfisalhon</a> &{" "}
-          <a href="https://github.com/mohsr">@mohsr</a>
-        </p>
+        <Credits />
       </div>
     );
   }
 }
 
 const styles = {
-  credits: {
-    fontSize: 12,
-    position: "absolute",
-    bottom: 10,
-    left: 0,
-    right: 0
-  },
   padding: {
     marginTop: 10
   }

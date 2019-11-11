@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../components/logo.jsx";
-import Input from "../components/input.jsx";
-import Button from "../components/button.jsx";
+import TextInput from "../components/textinput.jsx";
+import Credits from "../components/credits.jsx";
 
 const mainColor = "#3fada8";
 const windowWidth =
@@ -10,8 +10,22 @@ const windowWidth =
 class EventPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true,
+      eventName: null,
+      eventTime: null
+    };
   }
+
+  componentDidMount() {
+    this.getEventInfo();
+  }
+
+  getEventInfo = () => {
+    setTimeout(() => {
+      this.setState({ eventName: "ELS Meeting", eventTime: 90, loading: false });
+    }, 1000);
+  };
 
   createEvent = () => {
     alert("Create Event");
@@ -22,11 +36,36 @@ class EventPage extends Component {
   };
 
   render() {
+    const { loading, eventName, eventTime } = this.state;
     const { id } = this.props;
     return (
-      <div>
+      <div
+        style={{
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          flex: 1
+        }}
+      >
         <Logo />
-        <p>Room id is: {id}</p>
+
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div style={{ marginTop: "-20px" }}>
+            <h2 style={{ marginBottom: "20px" }}>{eventName}</h2>
+            <TextInput
+              onKeyPress={value => this.setEventTime(value)}
+              type={"text"}
+              label="Your name"
+              locked={false}
+              active={false}
+            />
+            <div style={{ marginTop: "20px" }}>
+              <p>Event Time is: {eventTime} minutes</p>
+              <p>Room id is: {id}</p>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
