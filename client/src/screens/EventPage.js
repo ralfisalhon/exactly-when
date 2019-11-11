@@ -52,7 +52,11 @@ class EventPage extends Component {
           <p>Loading...</p>
         ) : (
           <div style={{ marginTop: "-20px" }}>
-            <h2 style={{ marginBottom: "20px" }}>{eventName}</h2>
+            <h2>{eventName}</h2>
+            <div style={{ marginBottom: "20px" }}>
+              <p>Event Time is: {eventTime} minutes</p>
+              <p>Room id is: {id}</p>
+            </div>
             <TextInput
               onKeyPress={value => this.setEventTime(value)}
               type={"text"}
@@ -60,10 +64,6 @@ class EventPage extends Component {
               locked={false}
               active={false}
             />
-            <div style={{ marginTop: "20px" }}>
-              <p>Event Time is: {eventTime} minutes</p>
-              <p>Room id is: {id}</p>
-            </div>
           </div>
         )}
       </div>

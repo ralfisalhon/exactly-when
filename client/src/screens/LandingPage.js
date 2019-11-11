@@ -25,9 +25,11 @@ class LandingPage extends Component {
   }
 
   createEvent = onNavigate => {
-    if (this.state.eventName.length == 0) {
-      this.setState({ eventName: "Untitled Meeting" });
-    }
+    // activate to block empty fields
+    // if (this.state.eventName.length == 0 || this.state.eventTime == 0) {
+    //   alert("Please enter an event name & duration");
+    //   return;
+    // }
 
     // Simulates a fetch to the heroku app.
     this.setState({ loading: true });
@@ -35,10 +37,6 @@ class LandingPage extends Component {
       this.setState({ loading: false });
       onNavigate("Event");
     }, 500);
-  };
-
-  getInfo = () => {
-    alert("Get Info");
   };
 
   setEventName = value => {
@@ -78,7 +76,7 @@ class LandingPage extends Component {
         </div>
 
         <Popup
-          trigger={<Button type={"alt"} text={"exactly-what is this?"} onClick={this.getInfo} />}
+          trigger={<Button type={"alt"} text={"exactly-what is this?"} />}
           modal
           closeOnDocumentClick
         >

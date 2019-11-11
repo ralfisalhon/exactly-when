@@ -10,7 +10,7 @@
 }
 
 .logo {
-  height: 75vmin;
+  height: 70vmin;
   max-height: 400px;
   max-width: 750px;
   overflow: hidden;
@@ -25,4 +25,12 @@
 
 button:focus {
   outline: none;
+}
+
+button {
+  border-color: "white";
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
 }
