@@ -3,7 +3,9 @@ import "./textinputstyle.css";
 
 const mainColor = "#3fada8";
 const windowWidth =
-  window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
+  window.innerWidth > 400
+    ? 400 + (window.innerWidth * 0.85 - 400)
+    : window.innerWidth;
 
 class TextInput extends Component {
   constructor(props) {
@@ -32,9 +34,8 @@ class TextInput extends Component {
   render() {
     const { active, value, error, label, type } = this.state;
     const { locked, onKeyPress } = this.props;
-    const fieldClassName = `field ${(locked ? active : active || value) && "active"} ${locked &&
-      !active &&
-      "locked"}`;
+    const fieldClassName = `field ${(locked ? active : active || value) &&
+      "active"} ${locked && !active && "locked"}`;
 
     return (
       <div className={fieldClassName}>

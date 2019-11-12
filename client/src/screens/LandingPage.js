@@ -11,7 +11,9 @@ import { KeyObject } from "crypto";
 
 const mainColor = "#3fada8";
 const windowWidth =
-  window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
+  window.innerWidth > 400
+    ? 400 + (window.innerWidth * 0.85 - 400)
+    : window.innerWidth;
 const windowHeight = window.innerHeight;
 
 class LandingPage extends Component {
@@ -72,7 +74,10 @@ class LandingPage extends Component {
           />
         </div>
         <div>
-          <Button text={"Create Event"} onClick={() => this.createEvent(onNavigate)} />
+          <Button
+            text={"Create Event"}
+            onClick={() => this.createEvent(onNavigate)}
+          />
         </div>
 
         <Popup

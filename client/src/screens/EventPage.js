@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import Logo from "../components/logo.jsx";
+import Button from "../components/button.jsx";
 import TextInput from "../components/textinput.jsx";
 import Credits from "../components/credits.jsx";
 
 const mainColor = "#3fada8";
 const windowWidth =
-  window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
+  window.innerWidth > 400
+    ? 400 + (window.innerWidth * 0.85 - 400)
+    : window.innerWidth;
 
 class EventPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      eventName: null,
-      eventTime: null
+      eventName: "",
+      eventTime: 0,
+      name: "",
+      nameCheck: false
     };
   }
 
@@ -23,29 +28,27 @@ class EventPage extends Component {
 
   getEventInfo = () => {
     setTimeout(() => {
-      this.setState({ eventName: "ELS Meeting", eventTime: 90, loading: false });
+      this.setState({
+        eventName: "ELS Meeting",
+        eventTime: 90,
+        loading: false
+      });
     }, 1000);
   };
 
-  createEvent = () => {
-    alert("Create Event");
+  checkName = () => {
+    this.setState({ nameCheck: true });
   };
 
-  getInfo = () => {
-    alert("Get Info");
+  setName = value => {
+    this.setState({ name: value });
   };
 
   render() {
     const { loading, eventName, eventTime } = this.state;
     const { id } = this.props;
     return (
-      <div
-        style={{
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          flex: 1
-        }}
-      >
+      <div>
         <Logo />
 
         {loading ? (
@@ -54,15 +57,20 @@ class EventPage extends Component {
           <div style={{ marginTop: "-20px" }}>
             <h2>{eventName}</h2>
             <div style={{ marginBottom: "20px" }}>
-              <p>Event Time is: {eventTime} minutes</p>
-              <p>Room id is: {id}</p>
+              {/* <p>Event Time is: {eventTime} minutes</p>
+              <p>Room id is: {id}</p> */}
             </div>
             <TextInput
-              onKeyPress={value => this.setEventTime(value)}
+              onKeyPress={value => this.setName(value)}
               type={"text"}
               label="Your name"
-              locked={false}
+              locked={this.state.nameCheck}
               active={false}
+            />
+            <Button
+              type={"alt"}
+              text={"Continue"}
+              onClick={() => this.checkName()}
             />
           </div>
         )}
@@ -71,14 +79,6 @@ class EventPage extends Component {
   }
 }
 
-const styles = {
-  credits: {
-    fontSize: 12,
-    position: "absolute",
-    bottom: 10,
-    left: 0,
-    right: 0
-  }
-};
+const styles = {};
 
 export default EventPage;
