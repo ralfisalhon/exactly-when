@@ -6,14 +6,17 @@ import queryString from "query-string";
 
 const mainColor = "#3fada8";
 const windowWidth =
-  window.innerWidth > 400 ? 400 + (window.innerWidth * 0.85 - 400) : window.innerWidth;
+  window.innerWidth > 400
+    ? 400 + (window.innerWidth * 0.85 - 400)
+    : window.innerWidth;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       id: null,
-      currPage: "Landing"
+      // currPage: "Landing"
+      currPage: "Event" //TODO: CHANGE TO LANDING
       // pages: {
       //   Landing: <LandingPage />,
       //   Event: <EventPage />
@@ -37,7 +40,7 @@ class App extends Component {
     const { currPage, id } = this.state;
     return (
       <div className="App">
-        <div style={{ maxWidth: "800px" }}>
+        <div style={{ maxWidth: 800 }}>
           {currPage == "Landing" ? (
             <LandingPage onNavigate={newPage => this.navigate(newPage)} />
           ) : (

@@ -53,7 +53,7 @@ class LandingPage extends Component {
     const { loading, eventName, eventTime } = this.state;
     const { onNavigate } = this.props;
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
         <Logo />
         <div style={styles.padding}>
           <TextInput
