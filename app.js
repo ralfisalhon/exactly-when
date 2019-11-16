@@ -34,6 +34,11 @@ app.get('/', (req, res) => {
 app.post('/createevent', (req, res) => {
 	let event_name = res.body.event_name;
 
+	if (event_name == null) {
+		res.status(400);
+		res.send({error: "Please specify an event name."});
+	}
+
     let event_id = crypto.randomBytes(8).toString('hex');
     
     db.collection('events', function(error, coll) {
