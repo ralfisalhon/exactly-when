@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/createevent', (req, res) => {
-	let event_name = res.body.event_name;
+	let event_name = req.body.event_name;
 
 	if (event_name == null) {
 		res.status(400);
