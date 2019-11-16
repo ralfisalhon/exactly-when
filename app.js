@@ -32,16 +32,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/createevent', (req, res) => {
+	let event_name = res.body.event_name;
+
     let event_id = crypto.randomBytes(8).toString('hex');
     
-    db.collection('ids', function(error, coll) {
+    db.collection('events', function(error, coll) {
         if (error) {
             console.log(error);
             res.sendStatus(500);
             return;
         }
         
-        coll.insert({id: event_id});
+        coll.insert({id: event_id, event_name: event_name, attendees: []});
         res.status(200);
         res.send({id: event_id});
     });
