@@ -31,39 +31,71 @@ app.get('/', (req, res) => {
     res.send("Hello!");
 });
 
-// GET /attendees
+// GET /eventinfo
 // Takes:   id - string
-app.get('/attendees', (req, res) => {
-    
+app.get("/eventinfo", (req, res) => {
+    let id = req.query.id;
+
+    if (id == null) {
+        res.status(400);
+        res.send({error: "Please specify an event id."});
+        return;
+    }
+
+    db.collection("events", (error, collection) => {
+        if (error) {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+        }
+
+        collection.findOne({id: id}, (error, result) => {
+            if (error) {
+                console.log(error);
+                res.sendStatus(500);
+                return;
+            } else if (!result) {
+                res.status(400);
+                res.send({error: "Invalid event id."});
+                return;
+            }
+
+            res.status(200);
+            res.send(result);
+            return;
+        });
+    });
 });
 
 // POST /createevent
 // Takes:   event_name - string
 // Returns: {id - string}
-app.post('/createevent', (req, res) => {
+app.post("/createevent", (req, res) => {
     let event_name = req.body.event_name;
 
     if (event_name == null) {
         res.status(400);
         res.send({error: "Please specify an event name."});
+        return;
     }
 
     let event_id = crypto.randomBytes(8).toString('hex');
     // TODO - validate that event_id does not already identify an event.
     
-    db.collection('events', function(error, coll) {
+    db.collection("events", (error, collection) => {
         if (error) {
             console.log(error);
             res.sendStatus(500);
             return;
         }
         
-        coll.insert({id: event_id, 
-                     event_name: event_name, 
-                     time_created: new Date, 
-                     attendees: []});
+        collection.insert({id: event_id, 
+                           event_name: event_name, 
+                           time_created: new Date, 
+                           attendees: []});
         res.status(200);
-        res.header("Access-Control-Allow-Origin", "*");
+        // TODO - reenable CORS restrictions once live
+        // res.header("Access-Control-Allow-Origin", "*");
         res.send({id: event_id});
     });
 });
