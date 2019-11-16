@@ -31,15 +31,25 @@ app.get('/', (req, res) => {
     res.send("Hello!");
 });
 
-app.post('/createevent', (req, res) => {
-	let event_name = req.body.event_name;
+// GET /attendees
+// Takes:   id - string
+app.get('/attendees', (req, res) => {
+    
+});
 
-	if (event_name == null) {
-		res.status(400);
-		res.send({error: "Please specify an event name."});
-	}
+// POST /createevent
+// Takes:   event_name - string
+// Returns: {id - string}
+app.post('/createevent', (req, res) => {
+    let event_name = req.body.event_name;
+
+    if (event_name == null) {
+        res.status(400);
+        res.send({error: "Please specify an event name."});
+    }
 
     let event_id = crypto.randomBytes(8).toString('hex');
+    // TODO - validate that event_id does not already identify an event.
     
     db.collection('events', function(error, coll) {
         if (error) {
@@ -48,8 +58,12 @@ app.post('/createevent', (req, res) => {
             return;
         }
         
-        coll.insert({id: event_id, event_name: event_name, attendees: []});
+        coll.insert({id: event_id, 
+                     event_name: event_name, 
+                     time_created: new Date, 
+                     attendees: []});
         res.status(200);
+        res.header("Access-Control-Allow-Origin", "*");
         res.send({id: event_id});
     });
 });
