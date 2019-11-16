@@ -16,7 +16,6 @@ class Button extends Component {
         borderRadius: "20px",
         width: windowWidth * 0.7,
         maxWidth: 400
-        // marginTop: "20px"
       },
       eventText: {
         color: "white",
@@ -26,12 +25,13 @@ class Button extends Component {
         fontFamily: "Futura"
       },
       infoStyle: {
+        border: "none",
         backgroundColor: "#ecf0f1",
         borderRadius: "20px",
         maxWidth: 400,
         marginBottom: "5px",
         borderWidth: 2,
-        borderColor: mainColor,
+        // borderColor: mainColor,
         padding: "8px"
       },
       infoText: {
@@ -47,14 +47,28 @@ class Button extends Component {
     const { text, type, onClick } = this.props;
 
     return (
-      <button
-        style={type == "alt" ? this.styles.infoStyle : this.styles.buttonStyle}
-        onClick={onClick}
+      <span
+        style={{
+          backgroundColor: type === "alt" ? mainColor : "",
+          borderRadius: 20,
+          padding: "6px 2px 7px 2px"
+        }}
       >
-        <p style={type == "alt" ? this.styles.infoText : this.styles.eventText}>
-          {text}
-        </p>
-      </button>
+        <button
+          style={
+            type === "alt" ? this.styles.infoStyle : this.styles.buttonStyle
+          }
+          onClick={onClick}
+        >
+          <p
+            style={
+              type === "alt" ? this.styles.infoText : this.styles.eventText
+            }
+          >
+            {text}
+          </p>
+        </button>
+      </span>
     );
   }
 }

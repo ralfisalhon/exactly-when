@@ -19,6 +19,7 @@ class EventPage extends Component {
       eventName: "",
       eventTime: 0,
       name: "",
+      id: this.props.id,
       nameCheck: false,
       prevNames: [
         { name: "Ralfi" },
@@ -45,17 +46,25 @@ class EventPage extends Component {
   }
 
   componentDidMount() {
-    this.getEventInfo();
+    this.getEventInfo(this.props.id);
   }
 
-  getEventInfo = () => {
-    setTimeout(() => {
+  getEventInfo = id => {
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", () => {
+      console.log(xhr.responseText);
+      let obj = JSON.parse(xhr.responseText);
+      // window.open("?id=" + obj.id, "_self");
+      // this.setState({ loading: false });
+      // onNavigate("Event");
       this.setState({
         eventName: "ELS Meeting",
-        eventTime: 90,
         loading: false
       });
-    }, 1000); //1000
+    });
+    xhr.open("GET", "http://exactly-when.herokuapp.com/eventinfo?id=" + id);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
   };
 
   checkName = () => {
@@ -80,13 +89,12 @@ class EventPage extends Component {
     const {
       loading,
       eventName,
-      eventTime,
       nameCheck,
       prevNames,
       name,
       bestTimes
     } = this.state;
-    const { id } = this.props;
+
     return (
       <div style={{ textAlign: "center" }}>
         <Logo />

@@ -1,44 +1,46 @@
 import React, { Component } from "react";
 import Logo from "../components/logo.jsx";
-import Input from "../components/input.jsx";
 import TextInput from "../components/textinput.jsx";
 import Button from "../components/button.jsx";
 import Modal from "../components/modal.jsx";
 import Credits from "../components/credits.jsx";
 
 import Popup from "reactjs-popup";
-import { KeyObject } from "crypto";
 
 const mainColor = "#3fada8";
 const windowWidth =
   window.innerWidth > 400
     ? 400 + (window.innerWidth * 0.85 - 400)
     : window.innerWidth;
-const windowHeight = window.innerHeight;
 
 class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      eventName: "Untitled Meeting",
+      eventName: "",
       eventTime: 0
     };
   }
 
   createEvent = onNavigate => {
     // activate to block empty fields
-    // if (this.state.eventName.length == 0 || this.state.eventTime == 0) {
-    //   alert("Please enter an event name & duration");
-    //   return;
-    // }
+    if (this.state.eventName.length == 0) {
+      alert("Please enter an event name");
+      return;
+    }
 
-    // Simulates a fetch to the heroku app.
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false });
-      onNavigate("Event");
-    }, 500);
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", () => {
+      console.log(xhr.responseText);
+      let obj = JSON.parse(xhr.responseText);
+      window.open("?id=" + obj.id, "_self");
+      // this.setState({ loading: false });
+      // onNavigate("Event");
+    });
+    xhr.open("POST", "http://exactly-when.herokuapp.com/createevent");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("event_name=" + this.state.eventName);
   };
 
   setEventName = value => {
