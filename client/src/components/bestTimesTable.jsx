@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "./button";
 
 const mainColor = "#3fada8";
 const windowWidth =
@@ -11,40 +12,32 @@ class BestTimesTable extends Component {
     super(props);
     this.state = {};
   }
+  prevTimePressed = elem => {
+    alert(elem);
+  };
+
   render() {
-    const { data } = this.props;
+    const { data, canSelect } = this.props;
     return (
-      <div
-        style={{
-          textAlign: "start",
-          marginTop: 15
-          // overflow: "hidden"
-        }}
-      >
+      <div style={styles.table}>
         <p style={{ marginBottom: 5 }}>Here's the breakdown so far:</p>
         {data.map(elem => {
           return (
-            <div
-              key={elem.day}
-              style={{
-                marginRight: 5,
-                backgroundColor: "white",
-                borderRadius: 10,
-                marginBottom: 10,
-                padding: 10
-              }}
-            >
-              <p>{elem.day}</p>
+            <div key={elem.day} style={styles.tableElem}>
+              <p style={{ marginBottom: 5 }}>{elem.day}</p>
               {elem.times.map(elem => {
                 return (
-                  <div
-                    key={elem}
-                    style={{
-                      marginLeft: 10
-                    }}
-                  >
-                    <p>{elem}</p>
-                  </div>
+                  <span key={elem} style={styles.timeBlock}>
+                    <Button
+                      type={"alt"}
+                      text={elem}
+                      onClick={() =>
+                        canSelect
+                          ? this.prevTimePressed(elem)
+                          : alert("Please create new user or pick existing")
+                      }
+                    />
+                  </span>
                 );
               })}
             </div>
@@ -66,6 +59,19 @@ const styles = {
     borderColor: "black",
     width: windowWidth * 0.4,
     minWidth: "250px"
+  },
+  table: {
+    textAlign: "start",
+    marginTop: 15
+  },
+  tableElem: {
+    borderRadius: 10,
+    marginBottom: 10
+    // padding: 10
+  },
+  timeBlock: {
+    marginTop: 10,
+    marginRight: 5
   }
 };
 

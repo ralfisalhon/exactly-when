@@ -32,12 +32,13 @@ class EventPage extends Component {
         // { name: "Mohsin" }
       ],
       bestTimes: [
-        { day: "Friday", date: "11/15", times: ["3pm-5pm", "9pm-11pm"] },
-        { day: "Saturday", date: "11/16", times: ["2pm-3pm"] },
+        { people: 3, day: "Friday", date: "11/15", times: ["3pm", "9pm"] },
+        { people: 2, day: "Saturday", date: "11/16", times: ["2pm"] },
         {
+          people: 1,
           day: "Sunday",
           date: "11/17",
-          times: ["8am-8.45am", "3pm-5pm", "9pm-11pm"]
+          times: ["8am", "3pm", "9pm"]
         }
       ]
     };
@@ -137,7 +138,6 @@ class EventPage extends Component {
                   return (
                     <span key={elem.name} style={{ marginRight: 5 }}>
                       <Button
-                        key={elem.name}
                         type={"alt"}
                         text={elem.name}
                         onClick={() => this.prevNamePressed(elem.name)}
@@ -163,7 +163,10 @@ class EventPage extends Component {
                 </div>
               )
             )}
-            <BestTimesTable data={bestTimes}></BestTimesTable>
+            <BestTimesTable
+              data={bestTimes}
+              canSelect={nameCheck}
+            ></BestTimesTable>
           </div>
         )}
       </div>
