@@ -95,7 +95,7 @@ app.post("/createevent", (req, res) => {
                            attendees: []});
         res.status(200);
         // TODO - reenable CORS restrictions once live
-        // res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", "*");
         res.send({id: event_id});
     });
 });
