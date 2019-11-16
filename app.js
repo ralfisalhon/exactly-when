@@ -31,8 +31,18 @@ app.get('/', (req, res) => {
     res.send("Hello!");
 });
 
+// attendee schema
+/*
+ * attendee_name - string
+ * available_hrs - array of ints [900, 1200, 1500, 1830]
+ */
+
 // GET /eventinfo
-// Takes:   id - string
+// Takes:   id : string
+// Returns: {id : string, 
+//           event_name : string, 
+//           time_created : string,
+//           attendees : [attendee_name : string, hours : [int]]}
 app.get("/eventinfo", (req, res) => {
     let id = req.query.id;
 
@@ -56,11 +66,15 @@ app.get("/eventinfo", (req, res) => {
                 return;
             } else if (!result) {
                 res.status(400);
+                // TODO - reenable CORS restrictions once live
+                res.header("Access-Control-Allow-Origin", "*");
                 res.send({error: "Invalid event id."});
                 return;
             }
 
             res.status(200);
+            // TODO - reenable CORS restrictions once live
+            res.header("Access-Control-Allow-Origin", "*");
             res.send(result);
             return;
         });
@@ -68,8 +82,8 @@ app.get("/eventinfo", (req, res) => {
 });
 
 // POST /createevent
-// Takes:   event_name - string
-// Returns: {id - string}
+// Takes:   event_name : string
+// Returns: {id : string}
 app.post("/createevent", (req, res) => {
     let event_name = req.body.event_name;
 
@@ -99,6 +113,9 @@ app.post("/createevent", (req, res) => {
         res.send({id: event_id});
     });
 });
+
+// POST /addattendee
+// Takes:   attendee_name - string
 
 /* Listen in on a port. */
 app.listen(process.env.PORT || 3000);
