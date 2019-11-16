@@ -64,7 +64,7 @@ class LandingPage extends Component {
             active={false}
           />
         </div>
-        <div style={styles.padding}>
+        {/* <div style={styles.padding}>
           <TextInput
             onKeyPress={value => this.setEventTime(value)}
             type={"number"}
@@ -72,16 +72,19 @@ class LandingPage extends Component {
             locked={false}
             active={false}
           />
-        </div>
-        <div>
+        </div> */}
+        <div style={{ marginTop: 15 }}>
           <Button
             text={"Create Event"}
             onClick={() => this.createEvent(onNavigate)}
           />
         </div>
-
         <Popup
-          trigger={<Button type={"alt"} text={"exactly-what is this?"} />}
+          trigger={
+            <div style={{ marginTop: 10 }}>
+              <Button type={"alt"} text={"exactly-what is this?"} />
+            </div>
+          }
           modal
           closeOnDocumentClick
         >

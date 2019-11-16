@@ -15,12 +15,8 @@ class App extends Component {
     super();
     this.state = {
       id: null,
-      // currPage: "Landing"
-      currPage: "Event" //TODO: CHANGE TO LANDING
-      // pages: {
-      //   Landing: <LandingPage />,
-      //   Event: <EventPage />
-      // }
+      currPage: "Landing"
+      // currPage: "Event" //TODO: CHANGE TO LANDING
     };
   }
 
@@ -40,7 +36,7 @@ class App extends Component {
     const { currPage, id } = this.state;
     return (
       <div className="App">
-        <div style={{ maxWidth: 800 }}>
+        <div style={{ maxWidth: 600 }}>
           {currPage == "Landing" ? (
             <LandingPage onNavigate={newPage => this.navigate(newPage)} />
           ) : (
