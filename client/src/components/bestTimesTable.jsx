@@ -25,6 +25,7 @@ class BestTimesTable extends Component {
         {data.map(elem => {
           return (
             <div
+              key={elem.day}
               style={{
                 marginRight: 5,
                 backgroundColor: "white",
@@ -37,6 +38,7 @@ class BestTimesTable extends Component {
               {elem.times.map(elem => {
                 return (
                   <div
+                    key={elem}
                     style={{
                       marginLeft: 10
                     }}

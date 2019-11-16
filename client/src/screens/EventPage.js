@@ -135,8 +135,9 @@ class EventPage extends Component {
               {!nameCheck &&
                 this.state.prevNames.map(elem => {
                   return (
-                    <span style={{ marginRight: 5 }}>
+                    <span key={elem.name} style={{ marginRight: 5 }}>
                       <Button
+                        key={elem.name}
                         type={"alt"}
                         text={elem.name}
                         onClick={() => this.prevNamePressed(elem.name)}
@@ -149,7 +150,7 @@ class EventPage extends Component {
               <div style={{ marginTop: 10 }}>
                 <Button
                   // type={"alt"}
-                  text={"Continue"}
+                  text={"Create new User: " + name}
                   onClick={() => this.checkName()}
                 />
               </div>
