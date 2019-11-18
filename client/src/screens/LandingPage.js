@@ -7,11 +7,11 @@ import Credits from "../components/credits.jsx";
 
 import Popup from "reactjs-popup";
 
-const mainColor = "#3fada8";
-const windowWidth =
-  window.innerWidth > 400
-    ? 400 + (window.innerWidth * 0.85 - 400)
-    : window.innerWidth;
+// const mainColor = "#3fada8";
+// const windowWidth =
+//   window.innerWidth > 400
+//     ? 400 + (window.innerWidth * 0.85 - 400)
+//     : window.innerWidth;
 
 class LandingPage extends Component {
   constructor(props) {
@@ -19,24 +19,25 @@ class LandingPage extends Component {
     this.state = {
       loading: false,
       eventName: "",
-      eventTime: 0
+      eventTime: 0,
+      additionalOptions: false
     };
   }
 
   createEvent = onNavigate => {
     // activate to block empty fields
-    if (this.state.eventName.length == 0) {
+    if (this.state.eventName.length === 0) {
       alert("Please enter an event name");
       return;
     }
 
+    this.setState({ loading: true });
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
       console.log(xhr.responseText);
       let obj = JSON.parse(xhr.responseText);
+      this.setState({ loading: false });
       window.open("?id=" + obj.id, "_self");
-      // this.setState({ loading: false });
-      // onNavigate("Event");
     });
     xhr.open("POST", "http://exactly-when.herokuapp.com/createevent");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -52,11 +53,13 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { loading, eventName, eventTime } = this.state;
+    const { loading, additionalOptions } = this.state;
     const { onNavigate } = this.props;
     return (
-      <div style={{ textAlign: "center" }}>
-        <Logo />
+      <div>
+        <div style={{ textAlign: "center" }}>
+          <Logo />
+        </div>
         <div style={styles.padding}>
           <TextInput
             onKeyPress={value => this.setEventName(value)}
@@ -66,24 +69,33 @@ class LandingPage extends Component {
             active={false}
           />
         </div>
-        {/* <div style={styles.padding}>
-          <TextInput
-            onKeyPress={value => this.setEventTime(value)}
-            type={"number"}
-            label="How long (mins)?"
-            locked={false}
-            active={false}
-          />
-        </div> */}
+        {!additionalOptions ? (
+          <div style={{ textAlign: "right", marginTop: 5 }}>
+            <p
+              style={{ fontSize: 12, textDecoration: "underline" }}
+              onClick={() => this.setState({ additionalOptions: true })}
+            >
+              Advanced options
+            </p>
+          </div>
+        ) : (
+          <div style={styles.padding}>
+            <p>Option 1</p>
+            <p>Option 2</p>
+            <p>Option 3</p>
+          </div>
+        )}
+
         <div style={{ marginTop: 15 }}>
           <Button
             text={"Create Event"}
             onClick={() => this.createEvent(onNavigate)}
+            disabled={this.state.makingRequest}
           />
         </div>
         <Popup
           trigger={
-            <div style={{ marginTop: 10 }}>
+            <div style={{ marginTop: 10, textAlign: "center" }}>
               <Button type={"alt"} text={"exactly-what is this?"} />
             </div>
           }
@@ -104,10 +116,8 @@ class LandingPage extends Component {
           </div>
         </Popup>
         {loading && (
-          <div style={{ marginTop: "10px" }}>
-            <p>Creating your event...</p>
-            <p>Event name is: {eventName}</p>
-            <p>Time in mins is: {eventTime}</p>
+          <div style={{ marginTop: "10px", textAlign: "center" }}>
+            <p>Creating your event... Please wait.</p>
           </div>
         )}
         <div style={{ marginBottom: "50px" }} />

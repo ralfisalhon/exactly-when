@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Logo from "../components/logo";
 import Button from "../components/button";
 import TextInput from "../components/textinput";
-import Credits from "../components/credits";
 import BestTimesTable from "../components/bestTimesTable";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const mainColor = "#3fada8";
 const windowWidth =
@@ -17,21 +18,13 @@ class EventPage extends Component {
     this.state = {
       loading: true,
       eventName: "",
+      error: false,
       eventTime: 0,
       name: "",
       id: this.props.id,
       nameCheck: false,
-      prevNames: [
-        { name: "Ralfi" },
-        { name: "Mohsin" },
-        { name: "Daniela" }
-        // { name: "Ralfi" },
-        // { name: "Mohsin" },
-        // { name: "Ralfi" },
-        // { name: "Mohsin" },
-        // { name: "Ralfi" },
-        // { name: "Mohsin" }
-      ],
+      attendees: [],
+      rangeValues: [0, 3],
       bestTimes: [
         { people: 3, day: "Friday", date: "11/15", times: ["3pm", "9pm"] },
         { people: 2, day: "Saturday", date: "11/16", times: ["2pm"] },
@@ -57,8 +50,17 @@ class EventPage extends Component {
       // window.open("?id=" + obj.id, "_self");
       // this.setState({ loading: false });
       // onNavigate("Event");
+      if (!obj) {
+        alert("Something went wrong");
+        return;
+      }
+      if (obj && obj.error) {
+        this.setState({ error: true });
+        return;
+      }
       this.setState({
-        eventName: "ELS Meeting",
+        eventName: obj.event_name,
+        attendees: obj.attendees,
         loading: false
       });
     });
@@ -85,14 +87,52 @@ class EventPage extends Component {
     // alert("Hi " + name);
   };
 
+  renderTimePick() {
+    return (
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center"
+        }}
+      >
+        <p style={{ fontSize: 14 }}>
+          Hi {this.state.name}! Please enter your available times:
+        </p>
+        <div
+          style={{ justifyContent: "center", marginTop: 10, marginBottom: 10 }}
+        >
+          <Range
+            step={1}
+            min={0}
+            max={10}
+            pushable={true}
+            count={1}
+            defaultValue={[
+              this.state.rangeValues[0],
+              this.state.rangeValues[1]
+            ]}
+            onChange={value => this.setState({ rangeValues: value })}
+            trackStyle={[{ backgroundColor: mainColor }]}
+            handleStyle={[styles.handle, styles.handle]}
+          />
+        </div>
+        <p>
+          {this.state.rangeValues[0]}, {this.state.rangeValues[1]}
+        </p>
+      </div>
+    );
+  }
+
   render() {
     const {
       loading,
       eventName,
       nameCheck,
-      prevNames,
+      attendees,
       name,
-      bestTimes
+      bestTimes,
+      error
     } = this.state;
 
     return (
@@ -100,7 +140,14 @@ class EventPage extends Component {
         <Logo />
 
         {loading ? (
-          <p>Loading...</p>
+          error ? (
+            <div>
+              <h3>Invalid event id :(</h3>
+              <p>This event no longer exists.</p>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )
         ) : (
           <div style={{ marginTop: "-20px" }}>
             <h2>{eventName}</h2>
@@ -121,7 +168,7 @@ class EventPage extends Component {
                     }}
                   >
                     Create new user
-                    {prevNames.length > 0 ? " or pick existing" : null}:
+                    {attendees.length > 0 ? " or pick existing" : null}:
                   </h5>
                 </div>
                 <TextInput
@@ -138,11 +185,10 @@ class EventPage extends Component {
                 textAlign: "start",
                 width: windowWidth * 0.8,
                 marginTop: 8
-                // overflow: "hidden"
               }}
             >
               {!nameCheck &&
-                this.state.prevNames.map(elem => {
+                this.state.attendees.map(elem => {
                   return (
                     <span key={elem.name} style={{ marginRight: 5 }}>
                       <Button
@@ -158,23 +204,18 @@ class EventPage extends Component {
               <div style={{ marginTop: 10 }}>
                 <Button
                   // type={"alt"}
-                  text={"Create new User: " + name}
+                  text={"Create new user: " + name}
                   onClick={() => this.checkName()}
                 />
               </div>
             ) : (
               nameCheck && (
-                <div>
-                  <p style={{ fontSize: 14 }}>
-                    Hi {name}! Please enter your available times:
-                  </p>
+                <div style={{ justifyContent: "center" }}>
+                  {this.renderTimePick()}
                 </div>
               )
             )}
-            <BestTimesTable
-              data={bestTimes}
-              canSelect={nameCheck}
-            ></BestTimesTable>
+            {/* <BestTimesTable data={bestTimes} canSelect={nameCheck} /> */}
           </div>
         )}
       </div>
@@ -182,6 +223,15 @@ class EventPage extends Component {
   }
 }
 
-const styles = {};
+const styles = {
+  handle: {
+    backgroundColor: "white",
+    borderWidth: 3,
+    borderColor: mainColor,
+    height: 20,
+    width: 20,
+    marginTop: -8
+  }
+};
 
 export default EventPage;

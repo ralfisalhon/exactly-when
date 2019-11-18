@@ -31,12 +31,5 @@
 			C272.849,662.858,260.853,616.014,260.92,568.411z"/>
 	</g>
 </g>
-<g enable-background="new    ">
-	
-		<image overflow="visible" opacity="0.25" width="883" height="239" xlink:href="6885D5603F2B031F.png"  transform="matrix(1 0 0 1 85.4697 580.1328)">
-	</image>
-	<g>
-		<text transform="matrix(1 0 0 1 90.1553 740.5713)" fill="#535461" font-family="'Ludicrous'" font-size="182">exactly-when</text>
-	</g>
-</g>
+<text transform="matrix(1 0 0 1 90.1553 740.5713)" fill="#341F97" font-family="'Ludicrous'" font-size="182">exactly-when</text>
 </svg>

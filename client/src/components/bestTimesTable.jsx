@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "./button";
 
-const mainColor = "#3fada8";
+// const mainColor = "#3fada8";
 const windowWidth =
   window.innerWidth > 400
     ? 400 + (window.innerWidth * 0.85 - 400)

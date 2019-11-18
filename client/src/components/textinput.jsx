@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./textinputstyle.css";
 
-const mainColor = "#3fada8";
-const windowWidth =
-  window.innerWidth > 400
-    ? 400 + (window.innerWidth * 0.85 - 400)
-    : window.innerWidth;
+// const mainColor = "#3fada8";
+// const windowWidth =
+//   window.innerWidth > 400
+//     ? 400 + (window.innerWidth * 0.85 - 400)
+//     : window.innerWidth;
 
 class TextInput extends Component {
   constructor(props) {

@@ -4,11 +4,11 @@ import LandingPage from "./screens/LandingPage";
 import EventPage from "./screens/EventPage";
 import queryString from "query-string";
 
-const mainColor = "#3fada8";
-const windowWidth =
-  window.innerWidth > 400
-    ? 400 + (window.innerWidth * 0.85 - 400)
-    : window.innerWidth;
+// const mainColor = "#3fada8";
+// const windowWidth =
+//   window.innerWidth > 400
+//     ? 400 + (window.innerWidth * 0.85 - 400)
+//     : window.innerWidth;
 
 class App extends Component {
   constructor() {
@@ -16,7 +16,6 @@ class App extends Component {
     this.state = {
       id: null,
       currPage: "Landing"
-      // currPage: "Event" //TODO: CHANGE TO LANDING
     };
   }
 
@@ -37,7 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <div style={{ maxWidth: 600 }}>
-          {currPage == "Landing" ? (
+          {currPage === "Landing" ? (
             <LandingPage onNavigate={newPage => this.navigate(newPage)} />
           ) : (
             <EventPage id={id} />
@@ -48,14 +47,6 @@ class App extends Component {
   }
 }
 
-const styles = {
-  credits: {
-    fontSize: 12,
-    position: "absolute",
-    bottom: 10,
-    left: 0,
-    right: 0
-  }
-};
+// const styles = {};
 
 export default App;
