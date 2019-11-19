@@ -48,7 +48,7 @@ app.get("/eventinfo", (req, res) => {
 
     if (id == null) {
         res.status(400);
-        res.send({error: "Please specify an event id."});
+        res.send({error: "Please specify an id."});
         return;
     }
 
@@ -89,7 +89,7 @@ app.post("/createevent", (req, res) => {
 
     if (event_name == null) {
         res.status(400);
-        res.send({error: "Please specify an event name."});
+        res.send({error: "Please specify an event_name."});
         return;
     }
 
@@ -115,7 +115,56 @@ app.post("/createevent", (req, res) => {
 });
 
 // POST /addattendee
-// Takes:   attendee_name - string
+// Takes:   attendee_name : string
+//          hours : [int]
+// Returns: 200 if successful
+app.post("/addattendee", (req, res) => {
+    let id    = req.body.id;
+    let name  = req.body.attendee_name;
+    let hours = req.body.hours;
+
+    if (id == null || name == null || hours == null) {
+        res.status(400);
+        res.send({error: "Please specify an id, attendee_name, and hours."});
+        return;
+    }
+
+    db.collection("events", (error, collection) => {
+        if (error) {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+        }
+        
+        // Get the event from the db.
+        collection.findOne({id: id}, (error, result) => {
+            if (error) {
+                console.log(error);
+                res.sendStatus(500);
+                return;
+            } else if (!result) {
+                res.status(400);
+                res.header("Access-Control-Allow-Origin", "*");
+                res.send({error: "Invalid event id."});
+                return;
+            } else if (result.attendees.map(a => (a.name)).includes(name)) {
+                res.status(400);
+                res.header("Access-Control-Allow-Origin", "*");
+                res.send({error: "Attendee with name already exists."});
+                return;
+            }
+
+            // TODO: verify that hours is a valid list of valid integers.
+
+            // Update the attendees.
+            result.attendees.push({name: name, hours: JSON.parse(hours)});
+            collection.update({id: id}, {attendees: result.attendees});
+            
+            res.header("Access-Control-Allow-Origin", "*");
+            res.sendStatus(200);
+        });
+    });
+});
 
 /* Listen in on a port. */
 app.listen(process.env.PORT || 3000);
