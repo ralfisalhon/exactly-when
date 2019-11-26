@@ -3,6 +3,7 @@ import Logo from "../components/logo";
 import Button from "../components/button";
 import TextInput from "../components/textinput";
 import BestTimesTable from "../components/bestTimesTable";
+import CopyID from "../components/copyid";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -126,6 +127,7 @@ class EventPage extends Component {
 
   render() {
     const {
+      id,
       loading,
       eventName,
       nameCheck,
@@ -151,6 +153,7 @@ class EventPage extends Component {
         ) : (
           <div style={{ marginTop: "-20px" }}>
             <h2>{eventName}</h2>
+            <CopyID id={id} />
             <div style={{ marginBottom: "15px" }}>
               {/* <p>Event Time is: {eventTime} minutes</p>
               <p>Room id is: {id}</p> */}
