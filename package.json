@@ -4,7 +4,7 @@
     "dependencies": {
         "body-parser": "latest",
         "express": "latest",
-        "mongodb": "^2.2.33",
+        "mongodb": "^3.1.13",
         "reactjs-popup": "^1.5.0"
     }
 }
